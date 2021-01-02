@@ -12,13 +12,19 @@ const ActorType = Object.freeze({
    * the highest number and the LAST drawn. That would mean we would NOT see anything
    * EXCEPT the background sprites because it would be OVERDRAWING everything else.
    */
-  Background: 0,
-  NPC: 1,
-  Player: 2,
-  Projectile: 3,
+  Background: 1,
+  Platform: 2,
+  Decorator: 3,
+  Architecture: 4,
+  Interactable: 5,
+  Pickup: 6,
+  Enemy: 7,
+  NPC: 8,
+  Bullet: 9,
+  Player: 10,
+  Weapon: 11
   //add as many actor types as your game needs here BUT remember that the assigned number will determine drawn sort order...
 });
-
 /**
  * Defines whether a Sprite is Drawn and/or Updated by the ObjectManager Draw and Update methods
  *
@@ -107,6 +113,7 @@ const Keys = Object.freeze({
   Y : "KeyY",
   Z : "KeyZ",
   Enter: "Enter",
+  Space: "Space",
   Numpad0 : "Numpad0",
   Numpad1 : "Numpad1",
   Numpad2 : "Numpad2",
@@ -121,6 +128,7 @@ const Keys = Object.freeze({
   ArrowDown: "ArrowDown",
   ArrowLeft: "ArrowLeft",
   ArrowRight: "ArrowRight",
+  Esc: "Escape",
   //add keys...
 });
 

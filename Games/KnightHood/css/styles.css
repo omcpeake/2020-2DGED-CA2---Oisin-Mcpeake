@@ -1,0 +1,86 @@
+/*********************** Containers ****************************/
+
+/*
+* See Margin - https://www.w3schools.com/css/css_margin.asp
+* See Position - https://www.w3schools.com/css/css_positioning.asp
+*/
+#parent_container {
+  position: relative;
+  width: 1024;
+  height:  768;
+  margin: auto;
+}
+
+/*********************** Canvas ****************************/
+
+canvas {
+  position: absolute;
+  border: 1px solid black;
+  width: 1024;
+  height:  768;
+  z-index: 1;
+}
+
+/*********************** Fonts ****************************/
+
+@font-face {
+  font-family: "Orbitron";
+  src: url("../assets/fonts/orbitron/orbitron-black-webfont.ttf")
+      format("truetype"),
+    url("../assets/fonts/orbitron/orbitron-black-webfont.svg") 
+    format("svg");
+}
+
+@font-face {
+  font-family: "Ostrich";
+  src: url("../assets/fonts/ostrich/ostrich-sans-black.ttf") 
+  format("truetype"),
+    url("../assets/fonts/ostrich/ostrich-sans-black.svg") 
+    format("svg");
+}
+
+body {
+  font-family: Orbitron, Impact, Charcoal, sans-serif;
+  letter-spacing: 1px;
+  font-size: 18px;
+  background-color: rgb(0, 12, 78);
+}
+
+/*********************** UI Text ****************************/
+#menu_opening,
+#menu_winlose,
+#ui_score,
+#ui_lives{
+  position: absolute;
+  font-family: Orbitron, Impact, Charcoal, sans-serif;
+  letter-spacing: 2px;
+  font-size: 24px;
+  color: rgb(255, 254, 254);
+  text-shadow: 2px 2px rgb(0, 21, 141);
+  text-align: center;
+  z-index: 2;
+}
+
+#menu_opening{
+  font-size: 48px;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px rgb(0, 21, 141);
+}
+
+#menu_opening,
+#menu_winlose{
+  margin-left: 0px;
+  margin-top: 320px;
+  width: 1024px;
+  height: 60px;
+}
+
+#ui_lives{
+  top:20px;
+  left:20px;
+}
+
+#ui_score{
+  right:20px;
+  top:20px;
+}

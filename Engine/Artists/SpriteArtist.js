@@ -7,7 +7,6 @@
 class SpriteArtist extends Artist {
   //#region  Fields
   //#endregion
-  spriteSheet;
   sourcePosition;
   sourceDimensions;
   //#endregion
@@ -25,12 +24,6 @@ class SpriteArtist extends Artist {
   set SourceDimensions(value) {
     this.sourceDimensions = value;
   }
-  get SpriteSheet() {
-    return this.spriteSheet;
-  }
-  set SpriteSheet(value) {
-    this.spriteSheet = value;
-  }
   //#endregion
 
   //#region Constructors and Core methods
@@ -43,9 +36,8 @@ class SpriteArtist extends Artist {
    * @param {Vector2} sourcePosition position (x,y) of the source image to use as top left corner
    * @param {Vector2} sourceDimensions dimensions (w,h) of the portion of the source image to be drawn, in pixels
    */
-  constructor(context, alpha, spriteSheet, sourcePosition, sourceDimensions) {
-    super(context, alpha);
-    this.spriteSheet = spriteSheet;
+  constructor(context, spriteSheet, alpha, sourcePosition, sourceDimensions) {
+    super(context, spriteSheet, alpha);
     this.sourcePosition = sourcePosition;
     this.sourceDimensions = sourceDimensions;
   }
@@ -70,6 +62,9 @@ class SpriteArtist extends Artist {
     //save whatever context settings were used before this (color, line, text styles)
     this.Context.save();
 
+    //apply the sprite transformations to the sprite 
+    parent.SetContext(this.Context);
+
     //access the transform for the parent that this artist is attached to
     let transform2D = parent.Transform2D;
 
@@ -78,15 +73,15 @@ class SpriteArtist extends Artist {
 
     //draw image
     this.Context.drawImage(
-      this.spriteSheet,
+      this.SpriteSheet,
       this.sourcePosition.x,
       this.sourcePosition.y,
       this.sourceDimensions.x,
       this.sourceDimensions.y,
       transform2D.Translation.x - transform2D.Origin.x,
       transform2D.Translation.y - transform2D.Origin.y,
-      transform2D.Dimensions.x, //scale?
-      transform2D.Dimensions.y //scale?
+      transform2D.Dimensions.x,
+      transform2D.Dimensions.y 
     );
 
     //restore whatever context settings were used before save() was called above
@@ -99,9 +94,9 @@ class SpriteArtist extends Artist {
   //hybrid
   Clone() {
     return new SpriteArtist(
-      this.context, //shallow
-      this.alpha, //deep
-      this.spritesheet, //shallow
+      this.Context, //shallow
+      this.SpriteSheet, //shallow
+      this.Alpha, //deep
       this.sourcePosition.Clone(), //deep, if shallow then all clones will point to same Vector2 representing sourcePosition
       this.sourceDimensions.Clone() //deep
     );

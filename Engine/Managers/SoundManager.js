@@ -24,7 +24,7 @@ class SoundManager {
       var audioObject = document.getElementById(name);
       if (audioObject) audioCue.AudioObject = audioObject;
       else
-        throw "Error: No audio object was found for cue [" + this.cueName + "]";
+        throw "Error: No audio object was found for cue [" + name + "]. Did you forget to load in the HTML file?";
     }
   }
 
@@ -70,7 +70,8 @@ class SoundManager {
           audioObject.play();
         }
       }
-    } else throw "Error: No audio object was found for cue [" + name + "]";
+    } else throw "Error: No audio object was found for cue [" + name + "]. Did you forget to load in the HTML file?";
+
   }
 
   /**

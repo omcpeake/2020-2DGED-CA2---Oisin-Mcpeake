@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>Platform Panic - Version 2</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+    
+    <div id="parent_container">
+        <div id="main_game" style="display: block;">
+            <div id="ui_score" style="display: none;">Score</div>
+            <div id="ui_lives" style="display: none;">Lives</div>
+            <canvas id="main_canvas" width="1024" height="768"></canvas>
+        </div>
+                <div id="menu_opening" style="display: block;">
+            <div id="ui_text">Press Enter</div>
+        </div>
+        <div id="menu_winlose" style="display: none;">
+            <div id="ui_text" >You Won!</div>
+        </div>
+    </div>
+    <!---------------------------- Assets ---------------------------->
+    <!-- Load the audio assets -->
+    <!-- NAME, URL, ACCESSED DEC 2020-->
+    <audio preload="auto" id="coin_pickup" src="assets/sounds/coin_pickup.mp3"></audio>
+    <audio preload="auto" id="gameover" src="assets/sounds/gameover.wav"></audio>
+    <audio preload="auto" id="gunshot" src="assets/sounds/gunshot.wav"></audio>
+    <audio preload="auto" id="background" src="assets/sounds/background.mp3"></audio>
+
+    <!-- Load the texture assets -->
+    <!-- NAME, URL, ACCESSED DEC 2020-->
+    <img id="spritesheet_main" src="assets/images/spritesheet_main.png" style="display: none" />
+    <img id="spritesheet_jungle" src="assets/images/terrain/spritesheet_jungle.png" style="display: none" />
+    <img id="forest-1" src="assets/images/background/forest-1.png" style="display: none" />
+    <img id="forest-2" src="assets/images/background/forest-2.png" style="display: none" />
+    <img id="forest-3" src="assets/images/background/forest-3.png" style="display: none" />
+    <img id="forest-4" src="assets/images/background/forest-4.png" style="display: none" />
+    <img id="forest-5" src="assets/images/background/forest-5.png" style="display: none" />
+
+    <!---------------------------- Engine ---------------------------->
+
+    <!-- JS files are included in the order of dependency -->
+    <script src="../../Engine/Types/Rect.js"></script>
+    <script src="../../Engine/Types/Vector2.js"></script>
+    <script src="../../Engine/Types/Transform2D.js"></script>
+    <script src="../../Engine/Constants/Constants.js"></script>
+    <script src="../../Engine/Time/GameTime.js"></script>
+    <script src="../../Engine/Utilities/GDUtilities.js"></script>
+    <script src="../../Engine/Physics/Physics.js"></script> <!-- NEW FOR PHYSICS AND COLLISIONS -->
+
+    <script src="../../Engine/Controllers/Controller.js"></script>
+  
+    <script src="../../Engine/Actors/Actor2D.js"></script>
+    <script src="../../Engine/Artists/Artist.js"></script>
+    <script src="../../Engine/Artists/SpriteArtist.js"></script>
+    <script src="../../Engine/Artists/AnimatedSpriteArtist.js"></script>
+    <script src="../../Engine/Actors/Sprite.js"></script>
+    <script src="../../Engine/Actors/CollidableSprite.js"></script>  <!-- NEW FOR PHYSICS AND COLLISIONS -->
+
+    <script src="../../Engine/Managers/KeyboardManager.js"></script>
+    <script src="../../Engine/Managers/SoundManager.js"></script>
+    <script src="../../Engine/Managers/ObjectManager.js"></script>
+
+    <script src="../../Engine/Dictionary/AssetDictionary.js"></script>
+
+    <!-------------------------- Game-specific -------------------------->
+
+    <!-- JS files are included in the order of dependency -->
+    <script src="js/Constants/GameConstants.js"></script>
+    <script src="js/Controllers/BulletController.js"></script>
+    <script src="js/Controllers/PlayerController.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>

@@ -43,6 +43,11 @@ class ObjectManager {
       this.sprites[sprite.ActorType] = [];
     }
     this.sprites[sprite.ActorType].push(sprite);
+
+    //sort all background sprites by depth 0 (back) -> 1 (front)
+    objectManager.Sort(sprite.ActorType, function sortAscendingDepth(a, b) {
+      return a.LayerDepth - b.LayerDepth;
+    });
   }
 
   /**
@@ -132,6 +137,28 @@ class ObjectManager {
   Find(actorType) {
     if (this.sprites[actorType]) return this.sprites[actorType];
     else return null;
+  }
+
+  /**
+   * Returns an array of all the sprites in the object manager
+   * @returns {Array} An array of all sprites, otherwise null
+   */
+  FindAll() {
+    return this.sprites;
+  }
+
+  
+  /**
+   * Sorts the array of ActorType sprites using the function provided
+   *
+   * @param {ActorType} actorType
+   * @param {Function} compareFunction
+   * @memberof ObjectManager
+   */
+  Sort(actorType, compareFunction) {
+    if (this.sprites[actorType]) {
+      this.sprites[actorType].sort(compareFunction);
+    }
   }
 
   Clear() {

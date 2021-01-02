@@ -8,6 +8,7 @@
 class Artist {
   //#region Fields
   context;
+  spriteSheet;
   alpha;
   //#endregion
 
@@ -23,6 +24,12 @@ class Artist {
   }
   set Context(value) {
     this.context = value;
+  }
+  get SpriteSheet() {
+    return this.spriteSheet;
+  }
+  set SpriteSheet(value) {
+    this.spriteSheet = value;
   }
   //#endregion
 

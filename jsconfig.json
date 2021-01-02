@@ -7,6 +7,8 @@
     "include": [
         "Engine/**/*", //glob pattern e.g. Results/*.txt, ?p?.*
         "Games/PlatformPanic_1/**/*",
+        "Games/PlatformPanic_2/**/*",
+        "Games/PlatformPanic_3/**/*",
         ], 
     /*we can also exclude folders from the current project*/
     "exclude": [

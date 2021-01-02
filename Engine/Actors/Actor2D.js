@@ -9,6 +9,7 @@
  */
 class Actor2D {
     //#region Fields
+    collisionPrimitive = null;
     controllers = []; //or we could instanciate using... = new Array();
     //#endregion
   
@@ -28,6 +29,12 @@ class Actor2D {
     }
     get StatusType() {
       return this.statusType;
+    }
+    get CollisionPrimitive() {
+      return this.collisionPrimitive;
+    }
+    set CollisionPrimitive(collisionPrimitive) {
+      this.collisionPrimitive = collisionPrimitive;
     }
     set ID(id) {
       this.id = id;
@@ -56,11 +63,11 @@ class Actor2D {
      * @param {*} controller
      * @memberof Actor2D
      */
-    AttachController(behavior) {
+    AttachController(controller) {
       if(this.controllers == undefined)
         this.controllers = [];
   
-      this.controllers.push(behavior);
+      this.controllers.push(controller);
     }
   
     /**
@@ -89,7 +96,7 @@ class Actor2D {
       if(this.controllers != undefined)
       {
         for (let i = 0; i < this.controllers.length; i++)
-          this.controllers[i].Update(gameTime, this);
+          this.controllers[i].Execute(gameTime, this);
       }
     }
   
@@ -115,6 +122,9 @@ class Actor2D {
       //now clone all the actors attached behaviors
       for (let controller of this.controllers) 
         clone.AttachController(controller.Clone());
+
+      if(this.collisionPrimitive)
+        clone.collisionPrimitive = this.collisionPrimitive.Clone();
   
       //lastly return the actor
       return clone;

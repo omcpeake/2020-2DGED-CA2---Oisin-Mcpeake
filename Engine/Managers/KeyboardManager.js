@@ -63,4 +63,5 @@ class KeyboardManager {
         } else
             throw "Error: keyCodesArray does not contain a valid array!";
     }
+
 }

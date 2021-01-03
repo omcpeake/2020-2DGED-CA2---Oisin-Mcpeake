@@ -163,7 +163,7 @@ function UpdateGameState(gameTime) {
     var scoreElement = document.getElementById("ui_score");
     if (scoreElement) {
       scoreElement.style.display = "block";
-      scoreElement.innerHTML = "Gems Remaining: "+score;
+      scoreElement.innerHTML = "Soulstones Remaining: "+score;
     }
   }
   
@@ -197,7 +197,7 @@ function HandleInput(gameTime) {
 function StartGame(gameTime) {
   //set any win/lose variables
   lives = 5;
-  score = 6;
+  score = 15;
   timeSinceLastBullet=1650;
   startBullets=false;
   pausedGameplay=false;
@@ -242,7 +242,7 @@ function EndGame(gameTime)
   
   if(score<=0 && score!=null)
   {
-    ggElement.innerHTML = "All gems collected!";
+    ggElement.innerHTML = "All Soulstones collected!";
     soundManager.Play("win");
     console.log("win");
   }
@@ -471,12 +471,25 @@ function LoadPickupSprites() {
   let pickTranslationArray = [
     new Vector2(200, 610),
 
-    new Vector2(410, 730),
-    new Vector2(350, 730),
+    new Vector2(410, 725),
+    new Vector2(350, 725),
 
     new Vector2(450, 525),
     new Vector2(525, 525),
     new Vector2(725, 425),
+
+    new Vector2(325, 375),
+    new Vector2(275, 375),
+
+    new Vector2(575, 275),
+    new Vector2(625, 275),
+
+    new Vector2(700, 175),
+    new Vector2(750, 125),
+
+    new Vector2(975, 275),
+    new Vector2(975, 375),
+    new Vector2(975, 475),
   ];
 
   //set the take name for the animation - we could change to "gold_glint" easily

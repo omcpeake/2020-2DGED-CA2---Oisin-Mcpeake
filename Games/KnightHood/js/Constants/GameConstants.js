@@ -164,31 +164,7 @@ static COLLECTIBLES_ANIMATION_DATA = Object.freeze({
         new Rect(257, 130, 40, 45),
         new Rect(294, 130, 40, 45),
         new Rect(330, 130, 40, 45)
-      ]
-    },
-    "ruby_glint" :  {
-      fps: 6,
-      maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
-      startCellIndex: 0,
-      endCellIndex: 4,
-      boundingBoxDimensions: new Vector2(30, 35), 
-      cellData: [
-        new Rect(3, 138, 30, 35),
-        new Rect(39, 138, 30, 35),
-        new Rect(76, 138, 30, 35),
-        new Rect(112, 138, 30, 35),
-        new Rect(148, 138, 30, 35)
-      ]
-    },
-    "gold_glint" :  {
-      fps: 6,
-      maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
-      startCellIndex: 0,
-      endCellIndex: 1,
-      boundingBoxDimensions: new Vector2(30, 30), 
-      cellData: [
-        new Rect(65, 540, 30, 30),
-        new Rect(96, 540, 30, 30),
+        
       ]
     }
   }
@@ -243,6 +219,17 @@ static PLATFORM_DATA = Object.freeze({
     new Vector2(500, 400),
     new Vector2(550, 400),
 
+    //3rd
+    new Vector2(350, 350),
+    new Vector2(500, 300),
+    new Vector2(550, 300),
+    new Vector2(600, 300),
+    new Vector2(650, 300),
+    
+    new Vector2(700, 250),
+    new Vector2(750, 200),
+    new Vector2(800, 150),
+    
   ]
 });
 
@@ -284,6 +271,8 @@ static BIG_TREE_DATA = Object.freeze({
   translationArray: [
     //added spaces here so that you can easily see which grouping is which on screen
     new Vector2(0, 550),
+    new Vector2(520, 100),
+    
   ]
 });
 
@@ -303,6 +292,7 @@ static ROCK_DATA = Object.freeze({
     //added spaces here so that you can easily see which grouping is which on screen
     new Vector2(160, 714),
     new Vector2(450, 516),
+    new Vector2(300, 370),
   ]
 });
 

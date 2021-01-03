@@ -8,7 +8,7 @@ class SpriteData {
 //#region Sprite Data
 static RUNNER_START_POSITION = new Vector2(50, 715);
 static RUNNER_MOVE_KEYS = [Keys.A, Keys.D, Keys.Space, Keys.Enter];
-static RUNNER_RUN_VELOCITY = 0.08;
+static RUNNER_RUN_VELOCITY = 0.09;
 static RUNNER_JUMP_VELOCITY = 0.5;
 
 

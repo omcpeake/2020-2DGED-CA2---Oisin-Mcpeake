@@ -116,18 +116,19 @@ function LoadDebug(bDebugEnabled) {
 
 const cueArray = [
   new AudioCue("coin_pickup", 1, 1.5, false, 1),
-  new AudioCue("gameover", 1, 1, false, 1),
+  new AudioCue("gameover", 1, 1, false, 0),
   new AudioCue("jump", 0.4, 1, false, 0),
   new AudioCue("background", 0.1, 1.2, true, 0),
-  new AudioCue("hurt", 1, 1, false, 0)
+  new AudioCue("hurt", 1, 1, false, 0),
+  new AudioCue("win", 1, 1, false, 0)
   //add more cues here but make sure you load in the HTML!
 ];
 
-var lives = 5;
-var score = 6;
-var timeSinceLastBullet=1650;
-var startBullets=false;
-var pausedGameplay=false;
+var lives;
+var score;
+var timeSinceLastBullet;
+var startBullets;
+var pausedGameplay;
 
 //#endregion
 
@@ -140,7 +141,6 @@ function Initialize() {
 }
 
 function UpdateGameState(gameTime) {
-
   if(startBullets==true)
   {
     timeSinceLastBullet+=gameTime.ElapsedTimeInMs;
@@ -149,21 +149,24 @@ function UpdateGameState(gameTime) {
       LoadBulletSprites();
       timeSinceLastBullet=0;
     }
-  }
-  
+  } 
 
   //update UI with new score
   var livesElement = document.getElementById("ui_lives");
-  if (livesElement) {
-    livesElement.style.display = "block";
-    livesElement.innerHTML = "HP: "+lives;
+  if(lives!=null)
+  {
+    if (livesElement) {
+      livesElement.style.display = "block";
+      livesElement.innerHTML = "HP: "+lives;
+    }
+  
+    var scoreElement = document.getElementById("ui_score");
+    if (scoreElement) {
+      scoreElement.style.display = "block";
+      scoreElement.innerHTML = "Gems Remaining: "+score;
+    }
   }
-
-  var scoreElement = document.getElementById("ui_score");
-  if (scoreElement) {
-    scoreElement.style.display = "block";
-    scoreElement.innerHTML = "Gems Remaining: "+score;
-  }
+  
 
   //if score == 100 then show "You Win! or if time exceeds 60000ms then "Time Up! You Lose!"
   if(lives<=0 || score<=0)
@@ -193,20 +196,25 @@ function HandleInput(gameTime) {
 
 function StartGame(gameTime) {
   //set any win/lose variables
+  lives = 5;
+  score = 6;
+  timeSinceLastBullet=1650;
+  startBullets=false;
+  pausedGameplay=false;
   startBullets=true;
+
+  var livesElement = document.getElementById("ui_lives");
+  livesElement.style.display = "none";
+    
+  
+
+  var scoreElement = document.getElementById("ui_score");
+  scoreElement.style.display = "none";
+    
+  
   
   //Hide "Press Enter"
   document.getElementById("menu_opening").style.display = "none";
-
-  
-  for (let i = 0; i < objectManager.length; i++) {
-    console.log("hello");
-    console.log(objectManager[i].ActorType);
-    if(objectManager[i].ActorType==Pickup)
-    {
-      
-    }
-  }
 
   //unpause game
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
@@ -222,15 +230,31 @@ function EndGame(gameTime)
   var ggElement = document.getElementById("menu_winlose");
   ggElement.style.display = "block";
 
+  var livesElement = document.getElementById("ui_lives");
+  livesElement.style.display = "none";
+  var scoreElement = document.getElementById("ui_score");
+  scoreElement.style.display = "none";
+
+  startBullets=false;
+
+  //pausing audio crashes game
+  //soundManager.Pause("background");
   
-  if(score<=0)
+  if(score<=0 && score!=null)
   {
     ggElement.innerHTML = "All gems collected!";
+    soundManager.Play("win");
+    console.log("win");
   }
-  else
+  else if(lives<0 && lives!=null)
   {
     ggElement.innerHTML = "You Died";
+    soundManager.Play("gameover");
+    console.log("lose");
   }
+  //stop gameover or win sound from looping
+  score=null;
+  lives=null;
   objectManager.StatusType = StatusType.Drawn | StatusType.Paused;
   
 }
@@ -409,14 +433,14 @@ function LoadBulletSprites() {
     );
 
   
-  // let transform = new Transform2D(
+ 
   //   SpriteData.RUNNER_START_POSITION,
   //   0,
   //   Vector2.One,
   //   Vector2.Zero,
   //   artist.GetSingleFrameDimensions("idle_right"),
   //   0
-  // );
+ 
 
 
     //create the sprite and give it type
@@ -439,7 +463,6 @@ function LoadBulletSprites() {
     {
       bulletSprite.AttachController(
         new BulletController(
-          // new Vector2(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)),
           new Vector2(1,-5+Math.random() * 10),
           SpriteData.BULLET_VELOCITY
         )

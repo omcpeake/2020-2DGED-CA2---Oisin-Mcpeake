@@ -159,6 +159,12 @@ function UpdateGameState(gameTime) {
     livesElement.innerHTML = "HP: "+lives;
   }
 
+  var scoreElement = document.getElementById("ui_score");
+  if (scoreElement) {
+    scoreElement.style.display = "block";
+    scoreElement.innerHTML = "Gems Remaining: "+score;
+  }
+
   //if score == 100 then show "You Win! or if time exceeds 60000ms then "Time Up! You Lose!"
   if(lives<=0 || score<=0)
   {

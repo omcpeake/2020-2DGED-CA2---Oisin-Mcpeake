@@ -246,13 +246,13 @@ function EndGame(gameTime)
     soundManager.Play("win");
     console.log("win");
   }
-  else if(lives<0 && lives!=null)
+  else if(lives<=0 && lives!=null)
   {
     ggElement.innerHTML = "You Died";
     soundManager.Play("gameover");
     console.log("lose");
   }
-  //stop gameover or win sound from looping
+  //stop gameover or win audio from looping
   score=null;
   lives=null;
   objectManager.StatusType = StatusType.Drawn | StatusType.Paused;
@@ -279,6 +279,8 @@ function LoadSprites() {
   LoadBackgroundSprites();
   LoadPickupSprites();
   LoadEnemySprites();
+
+  LoadDeathbox();
   
 }
 
@@ -380,8 +382,6 @@ function LoadEnemySprites() {
       1
     );
 
-    
-
     // add the collision surface to test for collisions against
     enemySprite.collisionPrimitive = new RectCollisionPrimitive(
       enemySprite.Transform2D,
@@ -390,13 +390,12 @@ function LoadEnemySprites() {
 
     //add to the object manager
     objectManager.Add(enemySprite);
-    
   }
 }
 
 function LoadBulletSprites() {
   console.log("bullets fired");
-  //to add lots of pickups we can also just create a local array of positions for the pickups
+
   let pickTranslationArray = [
     new Vector2(80, 250),
     new Vector2(80, 250),
@@ -432,16 +431,6 @@ function LoadBulletSprites() {
       frameDimensions
     );
 
-  
- 
-  //   SpriteData.RUNNER_START_POSITION,
-  //   0,
-  //   Vector2.One,
-  //   Vector2.Zero,
-  //   artist.GetSingleFrameDimensions("idle_right"),
-  //   0
- 
-
 
     //create the sprite and give it type
     let bulletSprite = new Sprite(
@@ -455,8 +444,8 @@ function LoadBulletSprites() {
 
     // add the collision surface to test for collisions against
       bulletSprite.collisionPrimitive = new RectCollisionPrimitive(
-      bulletSprite.Transform2D,
-      0
+        bulletSprite.Transform2D,
+        0
     );
 
     for(let i=0;i<=pickTranslationArray.length;i++)
@@ -471,7 +460,6 @@ function LoadBulletSprites() {
 
     //add to the object manager
     objectManager.Add(bulletSprite);
-  
   }
   
   
@@ -540,6 +528,70 @@ function LoadPickupSprites() {
     objectManager.Add(pickupSprite);
   }
 }
+
+function LoadDeathbox() {
+  
+  
+  let pickTranslationArray = [
+    new Vector2(-200, 792), 
+  ];
+
+  var takeName = "deathbox";
+
+  //loop through the translation array
+  for (var translation of pickTranslationArray) {
+    //create an animated artist
+    let spriteArtist = new AnimatedSpriteArtist(
+      ctx,
+      SpriteData.DEATHBOX_DATA
+    );
+
+    //set the take
+    spriteArtist.SetTake(takeName);
+
+    //retrieve the dimensions of a single frame of the animation for the bounding box
+    var frameDimensions = spriteArtist.GetSingleFrameDimensions(takeName);
+
+    //set the origin so that the collision surface is in the center of the sprite
+    var origin = Vector2.DivideScalar(frameDimensions, 2);
+
+    //create a transform to position the enemy
+    let transform = new Transform2D(
+      translation,
+      0,
+      Vector2.One,
+      origin,
+      frameDimensions
+    );
+
+    
+    let deathbox = new Sprite(
+      "deathbox",
+      ActorType.Enemy,
+      StatusType.Updated | StatusType.Paused,
+      transform,
+      spriteArtist,
+      1
+    );
+
+    // add the collision surface to test for collisions against
+    deathbox.collisionPrimitive = new RectCollisionPrimitive(
+      deathbox.Transform2D,
+      0
+    );
+
+    //add to the object manager
+    objectManager.Add(deathbox);
+  }
+}
+
+
+
+
+
+
+
+
 
 function LoadBackgroundSprites() {
   //access the data

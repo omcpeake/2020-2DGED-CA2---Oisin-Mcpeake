@@ -16,6 +16,8 @@ static BULLET_START_POSITION=new Vector2(100, 250);
 static BULLET_VELOCITY = 0.05;
 
 
+
+
 static RUNNER_ANIMATION_DATA = Object.freeze({
   id: "runner_animation_data",
   spriteSheet: document.getElementById("player_spritesheet"),
@@ -114,7 +116,7 @@ static ENEMY_ANIMATION_DATA = Object.freeze({
         new Rect(246, 6, 104, 180),
         new Rect(51, 6, 104, 180)
       ]
-    }
+    },
   }
 });
 
@@ -244,7 +246,28 @@ static PLATFORM_DATA = Object.freeze({
   ]
 });
 
-
+static DEATHBOX_DATA = Object.freeze({
+  id: "deathbox_data",
+  spriteSheet: document.getElementById("sorcerer"),
+  actorType: ActorType.Enemy,
+  rotation: 0,
+  scale: new Vector2(1, 1),
+  origin: new Vector2(0, 0),
+  alpha: 0,
+  
+  takes: {  
+    "deathbox" :  {    
+      fps: 4,
+      maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
+      startCellIndex: 0,
+      endCellIndex: 0,
+      boundingBoxDimensions: new Vector2(2500, 50), 
+      cellData: [
+        new Rect(0, 0, 0, 0),
+      ]
+    },
+  }
+});
 
 static BIG_TREE_DATA = Object.freeze({
   id: "big_tree",

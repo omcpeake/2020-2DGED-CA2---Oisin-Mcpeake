@@ -13,7 +13,7 @@ static RUNNER_JUMP_VELOCITY = 0.5;
 
 
 static BULLET_START_POSITION=new Vector2(100, 250);
-static BULLET_VELOCITY = 0.025;
+static BULLET_VELOCITY = 0.05;
 
 
 static RUNNER_ANIMATION_DATA = Object.freeze({
@@ -95,7 +95,7 @@ static ENEMY_ANIMATION_DATA = Object.freeze({
   
   takes: {  
     "sorcerer" :  {    
-      fps: 6,
+      fps: 4,
       maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
       startCellIndex: 0,
       endCellIndex: 11,

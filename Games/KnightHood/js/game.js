@@ -125,7 +125,7 @@ const cueArray = [
 
 var lives = 5;
 var score = 6;
-var timeSinceLastBullet=1100;
+var timeSinceLastBullet=1650;
 var startBullets=false;
 var pausedGameplay=false;
 
@@ -144,7 +144,7 @@ function UpdateGameState(gameTime) {
   if(startBullets==true)
   {
     timeSinceLastBullet+=gameTime.ElapsedTimeInMs;
-    if(timeSinceLastBullet>=2020)
+    if(timeSinceLastBullet>=3040)
     {
       LoadBulletSprites();
       timeSinceLastBullet=0;
@@ -194,20 +194,27 @@ function HandleInput(gameTime) {
 function StartGame(gameTime) {
   //set any win/lose variables
   startBullets=true;
-  var livesElement = document.getElementById("ui_lives");
-  livesElement.style.display = "block";
-  livesElement.innerHTML = "lives: "+lives;
   
-
-
   //Hide "Press Enter"
   document.getElementById("menu_opening").style.display = "none";
+
+  
+  for (let i = 0; i < objectManager.length; i++) {
+    console.log("hello");
+    console.log(objectManager[i].ActorType);
+    if(objectManager[i].ActorType==Pickup)
+    {
+      
+    }
+  }
 
   //unpause game
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
 
   //play sound
   //soundManager.Play("background");
+
+  
 }
 
 function EndGame(gameTime)
@@ -364,16 +371,13 @@ function LoadEnemySprites() {
 }
 
 function LoadBulletSprites() {
-  console.log(timeSinceLastBullet);
+  console.log("bullets fired");
   //to add lots of pickups we can also just create a local array of positions for the pickups
   let pickTranslationArray = [
-    new Vector2(100, 250),
-    new Vector2(100, 250),
-    new Vector2(100, 250),
-    new Vector2(100, 250),
-    new Vector2(100, 250),
-    new Vector2(100, 250),
-    new Vector2(100, 250)
+    new Vector2(80, 250),
+    new Vector2(80, 250),
+    new Vector2(80, 250),
+    
   ];
 
   var takeName = "fireball";
@@ -435,7 +439,8 @@ function LoadBulletSprites() {
     {
       bulletSprite.AttachController(
         new BulletController(
-          new Vector2(Math.floor(Math.random() * 5), Math.floor(Math.random() * 3)),
+          // new Vector2(Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)),
+          new Vector2(1,-5+Math.random() * 10),
           SpriteData.BULLET_VELOCITY
         )
       );
@@ -448,16 +453,6 @@ function LoadBulletSprites() {
   
   
 }
-
-
-
-
-
-
-
-
-
-
 
 
 function LoadPickupSprites() {

@@ -115,14 +115,13 @@ function LoadDebug(bDebugEnabled) {
 //stores object manager which holds all sprites
 
 const cueArray = [
-  new AudioCue("coin_pickup", 1, 1.5, false, 1),
+  new AudioCue("coin_pickup", 0.5, 2.5, false, 0),
   new AudioCue("gameover", 1, 1, false, 0),
   new AudioCue("jump", 0.4, 1, false, 0),
   new AudioCue("background", 0.1, 1.2, true, 0),
   new AudioCue("hurt", 1, 1, false, 0),
   new AudioCue("win", 1, 1, false, 0),
   //new AudioCue("fireball", 1, 1, false, 0)
-  //add more cues here but make sure you load in the HTML!
 ];
 
 var lives;
@@ -305,7 +304,7 @@ function LoadPlayerSprite() {
   );
 
   //step 5 - set performance characteristics of the body attached to the moveable sprite
-  playerSprite.Body.MaximumSpeed = 5;
+  playerSprite.Body.MaximumSpeed = SpriteData.RUNNER_MAX_SPEED;
   playerSprite.Body.Friction = FrictionType.Normal;
   playerSprite.Body.Gravity = GravityType.Normal;
 
@@ -422,7 +421,6 @@ function LoadBulletSprites() {
       frameDimensions
     );
 
-
     //create the sprite and give it type
     let bulletSprite = new Sprite(
       "fireball",
@@ -534,8 +532,6 @@ function LoadPickupSprites() {
 }
 
 function LoadDeathbox() {
-  
-  
   let pickTranslationArray = [
     new Vector2(-200, 792), 
   ];
@@ -568,7 +564,6 @@ function LoadDeathbox() {
       frameDimensions
     );
 
-    
     let deathbox = new Sprite(
       "deathbox",
       ActorType.Enemy,
@@ -590,13 +585,7 @@ function LoadDeathbox() {
 }
 
 
-
-
-
-
-
-
-
+//**************BACKGROUND AND PLATFORMS*****************/
 function LoadBackgroundSprites() {
   //access the data
   var backgroundData = SpriteData.BACKGROUND_DATA;

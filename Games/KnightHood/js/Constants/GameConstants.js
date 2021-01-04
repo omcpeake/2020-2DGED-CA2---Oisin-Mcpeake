@@ -6,16 +6,16 @@
 class SpriteData {
 
 //#region Sprite Data
+//player
 static RUNNER_START_POSITION = new Vector2(50, 715);
 static RUNNER_MOVE_KEYS = [Keys.A, Keys.D, Keys.Space, Keys.Enter];
 static RUNNER_RUN_VELOCITY = 0.09;
 static RUNNER_JUMP_VELOCITY = 0.5;
+static RUNNER_MAX_SPEED=5;
 
-
+//bullets
 static BULLET_START_POSITION=new Vector2(100, 250);
 static BULLET_VELOCITY = 0.05;
-
-
 
 
 static RUNNER_ANIMATION_DATA = Object.freeze({
@@ -139,8 +139,7 @@ static BULLET_ANIMATION_DATA = Object.freeze({
       cellData: [
         new Rect(0, 54, 65, 8),
         new Rect(0, 63, 65, 8),
-        new Rect(0, 72, 65, 8)
-        
+        new Rect(0, 72, 65, 8) 
       ]
     }
   }
@@ -163,8 +162,7 @@ static COLLECTIBLES_ANIMATION_DATA = Object.freeze({
         new Rect(219, 130, 40, 45),
         new Rect(257, 130, 40, 45),
         new Rect(294, 130, 40, 45),
-        new Rect(330, 130, 40, 45)
-        
+        new Rect(330, 130, 40, 45)  
       ]
     }
   }
@@ -296,7 +294,6 @@ static ROCK_DATA = Object.freeze({
   ]
 });
 
-
 static BACKGROUND_DATA = [
   {
     id: "background_1",
@@ -340,10 +337,6 @@ static BACKGROUND_DATA = [
     layerDepth: 0.2,
     scrollSpeedMultiplier: 0.1
   }
-  
-
-  
- 
 ];
 
 //#endregion

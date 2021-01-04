@@ -1,6 +1,9 @@
 github repo
 https://github.com/omcpeake/GameEngineCa2
 
+youtube screencast
+https://youtu.be/8nEsamiTdSc
+
 assets from itch.io
 https://itch.io/game-assets/free 
 

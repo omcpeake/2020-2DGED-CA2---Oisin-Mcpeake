@@ -246,7 +246,7 @@ static DEATHBOX_DATA = Object.freeze({
       maxLoopCount: -1, //-1 = always, 0 = run once, N = run N times
       startCellIndex: 0,
       endCellIndex: 0,
-      boundingBoxDimensions: new Vector2(2500, 50), 
+      boundingBoxDimensions: new Vector2(2500, 100), 
       cellData: [
         new Rect(0, 0, 0, 0),
       ]

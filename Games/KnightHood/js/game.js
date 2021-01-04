@@ -116,7 +116,7 @@ function LoadDebug(bDebugEnabled) {
 
 const cueArray = [
   new AudioCue("coin_pickup", 0.5, 2.5, false, 0),
-  new AudioCue("gameover", 1, 1, false, 0),
+  new AudioCue("gameover", 0.3, 1, false, 0),
   new AudioCue("jump", 0.4, 1, false, 0),
   new AudioCue("background", 0.1, 1.2, true, 0),
   new AudioCue("hurt", 1, 1, false, 0),
@@ -134,7 +134,7 @@ var pausedGameplay;
 
 function Initialize() {
   //debug drawer to show bounding rect or circle around collidable sprites
-  LoadDebug(true);
+  LoadDebug(false);
 
   //load sprites
   LoadSprites();
@@ -190,7 +190,6 @@ function HandleInput(gameTime) {
     if (keyboardManager.IsKeyDown(Keys.Esc)) {
       pause(gameTime);
     }
-  
 }
 
 function StartGame(gameTime) {
@@ -533,7 +532,7 @@ function LoadPickupSprites() {
 
 function LoadDeathbox() {
   let pickTranslationArray = [
-    new Vector2(-200, 792), 
+    new Vector2(-200, 810), 
   ];
 
   var takeName = "deathbox";

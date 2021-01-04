@@ -120,7 +120,8 @@ const cueArray = [
   new AudioCue("jump", 0.4, 1, false, 0),
   new AudioCue("background", 0.1, 1.2, true, 0),
   new AudioCue("hurt", 1, 1, false, 0),
-  new AudioCue("win", 1, 1, false, 0)
+  new AudioCue("win", 1, 1, false, 0),
+  //new AudioCue("fireball", 1, 1, false, 0)
   //add more cues here but make sure you load in the HTML!
 ];
 
@@ -167,7 +168,6 @@ function UpdateGameState(gameTime) {
     }
   }
   
-
   //if score == 100 then show "You Win! or if time exceeds 60000ms then "Time Up! You Lose!"
   if(lives<=0 || score<=0)
   {
@@ -205,13 +205,9 @@ function StartGame(gameTime) {
 
   var livesElement = document.getElementById("ui_lives");
   livesElement.style.display = "none";
-    
   
-
   var scoreElement = document.getElementById("ui_score");
   scoreElement.style.display = "none";
-    
-  
   
   //Hide "Press Enter"
   document.getElementById("menu_opening").style.display = "none";
@@ -220,9 +216,7 @@ function StartGame(gameTime) {
   objectManager.StatusType = StatusType.Drawn | StatusType.Updated;
 
   //play sound
-  //soundManager.Play("background");
-
-  
+  soundManager.Play("background");
 }
 
 function EndGame(gameTime)
@@ -256,7 +250,6 @@ function EndGame(gameTime)
   score=null;
   lives=null;
   objectManager.StatusType = StatusType.Drawn | StatusType.Paused;
-  
 }
 
 function pause(gameTime)
@@ -281,7 +274,6 @@ function LoadSprites() {
   LoadEnemySprites();
 
   LoadDeathbox();
-  
 }
 
 function LoadPlayerSprite() {
@@ -340,8 +332,7 @@ function LoadEnemySprites() {
   
   //to add lots of pickups we can also just create a local array of positions for the pickups
   let pickTranslationArray = [
-    new Vector2(50, 313),
-    
+    new Vector2(50, 313), 
   ];
 
   var takeName = "sorcerer";

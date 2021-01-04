@@ -1,1 +1,5 @@
-when I copied the engine from the class where the github repo wasnt working it also copied all of the commits for some reason
+github repo
+https://github.com/omcpeake/GameEngineCa2
+
+assets from itch.io
+https://itch.io/game-assets/free 
